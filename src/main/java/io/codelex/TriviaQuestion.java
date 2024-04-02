@@ -5,10 +5,19 @@ public class TriviaQuestion {
     private final String correctAnswer;
 
     public TriviaQuestion(String triviaString) {
-        int indexOfSpace = triviaString.indexOf(" ");
-
-        this.question = "What" + triviaString.substring(indexOfSpace, triviaString.length() - 1) + "?";
-        this.correctAnswer = triviaString.substring(0, indexOfSpace);
+        if (triviaString != null && !triviaString.isEmpty()) {
+            int indexOfSpace = triviaString.indexOf(" ");
+            if (indexOfSpace != -1) {
+                this.question = "What" + triviaString.substring(indexOfSpace) + "?";
+                this.correctAnswer = triviaString.substring(0, indexOfSpace);
+            } else {
+                this.question = null;
+                this.correctAnswer = null;
+            }
+        } else {
+            this.question = null;
+            this.correctAnswer = null;
+        }
     }
 
     public String getQuestion() {
