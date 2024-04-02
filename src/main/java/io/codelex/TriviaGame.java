@@ -12,7 +12,7 @@ public class TriviaGame {
         this.stringGenerator = stringGenerator;
     }
 
-    public void play(){
+    public void play() {
         int correctGuesses = 0;
 
         System.out.println("Let's play a Trivia game. You will be given a question and 4 possible choices for answer.");
@@ -20,17 +20,14 @@ public class TriviaGame {
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
-            String userAnswer;
-            TriviaQuestion question;
             final int MAX_QUESTIONS = 20;
-
             Optional<String> triviaStringOptional = stringGenerator.generateTriviaString();
-            question = new TriviaQuestion(triviaStringOptional.orElse(null));
+            TriviaQuestion question = new TriviaQuestion(triviaStringOptional.orElse(null));
 
             printQuestion(question);
             String[] choices = getChoices(question);
             printChoices(choices);
-            userAnswer = scanner.nextLine();
+            String userAnswer = scanner.nextLine();
 
             if (isCorrectAnswer(question, userAnswer)) {
                 correctGuesses++;
